@@ -1,0 +1,42 @@
+Terraform
+1. Installation on Amazon Linux (64-bit)
+
+Step 1: Install required packages
+# sudo yum install -y yum-utils shadow-utils
+
+Step 2: Add HashiCorp repo
+# sudo yum-config-manager --add-repo https://rpm.releases.hashicorp.com/AmazonLinux/hashicorp.repo
+
+Step 3: Install Terraform
+# sudo yum install -y terraform
+
+Step 4: Verify
+# terraform version
+
+2. aws configure to validate
+    1 create IAM user
+    2 # aws configure
+3. commands
+# terraform init
+# terraform plan
+# terraform apply -auto-approve
+# terraform destroy -auto-approve
+
+
+manually created infra
+=====================
+time
+errors
+if something goes wrong, tracking is very difficult
+restoring the infra is time taking..
+version control
+
+Infra as a code
+==================
+version control --> versioning of our code, review, history of infra, collobaration
+CRUD --> operations on infra is easy creating, updating, reading and deleting
+consistent infra -> IaaC can setup same infra across all environments, basically working in DEV not working in PROD
+inventory management --> we can check IaaC to understand what are the services we are using
+cost --> switch off the infra in non business hours, switch on again in business hours... we can schedule to stop the servers at 8PM start again at 8AM
+dependency management --> IaaC can understand the dependencies between resources..
+Modules --> we can extend terraform code using modules
