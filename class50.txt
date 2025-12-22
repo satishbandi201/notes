@@ -1,0 +1,34 @@
+Docker installation
+
+# sudo dnf -y install dnf-plugins-core
+# sudo dnf config-manager --add-repo https://download.docker.com/linux/rhel/docker-ce.repo
+# sudo dnf install docker-ce docker-ce-cli containerd.io docker-buildx-plugin docker-compose-plugin
+
+start docker
+# sudo systemctl start docker
+# sudo systemctl enable docker
+# sudo systemctl status docker
+
+add your normal user to docker group
+
+# sudo usermod -aG docker ec2-user
+
+check running containers
+# docker ps 
+# docker images
+# docker ps -a    ---> show all the containers
+# docker rm <container ID> ---> remove container
+# docker rm -f <container ID> ---> forcefully remove container
+# docker rmi <image name>  ----> remove image
+# docker run <image name>:<tag> --> pull image+run+start the container
+# docker run -d nginx ---> -d means run in background
+# docker run -d -p 80:80 nginx  ---> -p means port open, host port:ngnix port
+
+Ports=(0-65535)
+
+# docker run -d -p 80:80 --name nginx nginx  ---> --name for container name
+# docker exec -it <conatiner ID> bash --> login to container check linux commands
+# docker inspect <containerID> --> inspect more info & check IP address etc
+# docker logs <containerID> --> check logs
+
+

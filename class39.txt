@@ -1,0 +1,10 @@
+Load Balancer
+
+How to access pvt instances?
+jump/Bastion and VPN
+
+Bastion / Jump Host
+
+
+we should create jump/bastion host on public subnet from where we can access instances in private subnets
+bastion is a normal ec2 created in public subnet

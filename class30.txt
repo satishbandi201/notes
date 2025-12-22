@@ -1,4 +1,9 @@
 Terraform
+Softwares Required:
+VS Code
+Terraform
+AWS CLI V2 (if run in windows)
+
 1. Installation on Amazon Linux (64-bit)
 
 Step 1: Install required packages
