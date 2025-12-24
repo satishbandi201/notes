@@ -1,0 +1,76 @@
+/var/lib/docker --> Docker home directory
+
+we should docker login before push
+# docker login -u <username>
+
+we should tag the image befor push
+# docker tag run:v2 satishbandi33/run:v2
+# docker push satishbandi33/run:v2
+
+# docker push URL/username/image-name:version
+
+# docker push docker.io/joindevops/label:v1
+
+Expose
+========
+we can check which port is open by docker image
+# docker inspect <imagename>
+
+ENV
+=====
+env variables
+
+CMD
+======
+it keeps container run every time ex: CMD ["nginx", "-g", "daemon off;" ]
+CMD instruction can be overriden, used to give argument # CMD ["google.com"]
+
+ENTRYPOINT
+=============
+We can't override ENTRYPOINT, if we try to do it will override
+We can use combination of CMD and ENTRYPOINT for better results, ENTRYPOINT will have command, default args can be supplied by CMD
+You can always override default args through command line
+used to give base command # ENTRYPOINT ["ping"]
+
+USER 
+========
+we should use normal user for buidling images
+
+# RUN useradd sivakumar
+# USER sivakumar
+
+WORKDIR
+========
+set the workdirectory
+
+# RUN mkdir /tmp/workdir-demo
+# WORKDIR /tmp/workdir-demo
+
+cd will not work here so we should use work dir
+
+build the image without cache and output
+# docker build -t workdir:v1 --no-cache --progress=plain .
+
+
+
+ARG
+======= 
+it is like env
+ARG is build time variables, they can't be accessed inside container. ENV can be accessed build time and then inside container also
+ARG instruction variables can be overriden #(--build-arg trainer=satish)
+
+in an exceptional case ARG can be the first instruction to supply version to base OS in FROM, you cant use that version after FROM instruction
+# docker build -t arg:v1 --build-arg version=8
+
+How can you use ARG inside container?
+use ENV with same variable name (watc vedio 1:05)
+
+ONBUILD
+========
+others can use buid images by you?
+While devloping images you can put some conditions while others are using your images...
+
+Note:
+
+we can't delete images if it is in use, first we should delete container or we should stop conatiners first
+# docker rm -f `docker ps -a -q` (delete all containers at a time)
