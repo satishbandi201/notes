@@ -1,0 +1,49 @@
+imp we should take official image directly  depends upon technoloy
+mongo-DB
+=======
+example: if mongodb = mongodb 7 version
+            java = maven
+
+build mongo  image and conatainer
+# docker build -t mongo:v1 .
+# docker run -d --name mongodb mongo:v1  
+
+mongodb official image from hub
+
+catalogue
+==========
+nodejs:20 -docker hub
+
+docker build -t catalogue:v1 .
+docker run -d --name catalogue catalogue:v1
+docker exec -it 2438c5c0a8bb bash
+curl http://localhost:8080/health -->check the container health
+
+check logs
+# docker logs catalogue
+
+check IP
+# docker inspect catalogue
+
+Error: {"app":"OK","mongo":false}
+why bacause due to network, by default it takes docker host network
+ we should create custom (bridge) network
+# docker network ls
+
+docker have 2 types of network, bridge and host. host means directly host network. bridge means docker creates seperate network interface and assign the IP address to containers..
+
+docker default bridge network can't communicate between containers, docker always suggest to create custom brige network
+
+#docker network create <name>
+#docker network disconnect bridge catalogue -- disconnect
+#docker network connect roboshop mongodb
+#docker exec -it catalogue bash
+#curl localhost:8080/health
+
+
+redis
+=====
+# docker run -d --name redis --network roboshop redis:7
+
+it take image from docker hub no need to write docker file
+

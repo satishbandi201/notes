@@ -1,0 +1,45 @@
+images otimization
+
+* use docker official images and alphine images only it reduces memory size of the image
+
+volumes
+========
+-v host-dir:contianer-dir
+/usr/share/nginx/html  -->nginx html dir
+
+un-named/un-managed volumes
+if we create directory and manage it then those un-named/un-manged volumes (difficult to maintain)
+if docker create directory and manage it then those named/manged volumes (preffer-easy)
+
+stateful vs stateless
+=====================
+web app - stateless
+DB- statefull
+
+volumes should create to only stateful applications
+databases stores the actual data stores directories
+
+mongodb
+stores data in : /data/db
+$ docker run --name some-mongo -v /my/own/datadir:/data/db -d mongo
+
+how to create named volumes
+===========================
+
+# docker volume create nginx
+# docker volume ls
+$ docker run -d -v nginx:/usr/share/nginx/html/ -p 80:80 nginx
+$ docker exec -it 21 bash
+cd /usr/share/nginx/html/
+# echo "hello" > hello.html
+
+check docker volumes path:
+cd /var/lib/docker/volumes/
+
+remove container and create again and test, docker remains keep the volumes 
+$ docker rm -f 2102d1d0a6ec
+$ docker run -d -v nginx:/usr/share/nginx/html/ -p 80:80 nginx
+
+
+
+
